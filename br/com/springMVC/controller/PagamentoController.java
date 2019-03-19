@@ -22,24 +22,21 @@ public class PagamentoController {
 	@Autowired
 	private CarrinhoCompras carrinho;
 	
-	@Autowired //Precisamos declarar nas configs o Bean do restTemplate
+	@Autowired
 	private RestTemplate restTemplate;
 	
 	
 	@RequestMapping(value="/finalizar", method=RequestMethod.POST)
 	public Callable<ModelAndView> finalizar(RedirectAttributes model) {
 		
-		//Callable é uma classe anonima para que o Spring entenda que esse método será requisições ASSINCRONAS
-		//Por ser um classe anonima, temos que implemetar a chamada da classe anonima e colocar o código dentro dela
 		return () -> {
 			try {
 				String uri = "https://book-payment.herokuapp.com/payment";
-				String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);//Faz requisicao Rest e retorna
+				String response = restTemplate.postForObject(uri, new DadosPagamento(carrinho.getTotal()), String.class);
 				System.out.println(response);
-				model.addFlashAttribute("sucesso",response);//Retorno da resposta da API Rest que está sendo consumida
-				return new ModelAndView("redirect:/produtos");//Paga e retorna para listagem dos produtos
+				model.addFlashAttribute("sucesso",response);
+				return new ModelAndView("redirect:/produtos");
 			} catch (HttpClientErrorException e) {
-				//e.printStackTrace();//Joga o erro na tela
 				model.addFlashAttribute("falha","Valor maior que o permitido!");
 				return new ModelAndView("redirect:/produtos");
 			}

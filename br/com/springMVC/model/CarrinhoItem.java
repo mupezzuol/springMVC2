@@ -18,12 +18,10 @@ public class CarrinhoItem implements Serializable {
 		this.tipoPreco = tipoPreco;
 	}
 	
-	// Verifico o preco de acordo com o tipo
 	public BigDecimal getPreco() {
 		return produto.precoPara(tipoPreco);
 	}
 	
-	//Retorno a quantidade total atraves de multiply, onde nós multiplacamos o valor pela quantidade daquele item daquele tipo
 	public BigDecimal getTotal(int quantidade) {
 		return this.getPreco().multiply(new BigDecimal(quantidade));
 	}
@@ -41,7 +39,6 @@ public class CarrinhoItem implements Serializable {
 		this.tipoPreco = tipoPreco;
 	}
 	
-	//Implementamos hashCode e equals para não deixar adc itens no carrinho que sejam iguais
 	@Override
 	public int hashCode() {
 		final int prime = 31;

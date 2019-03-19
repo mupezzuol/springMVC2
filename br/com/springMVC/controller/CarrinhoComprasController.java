@@ -16,10 +16,10 @@ import com.springMVC.model.enums.TipoPreco;
 
 @Controller
 @RequestMapping("/carrinho")
-@Scope(value=WebApplicationContext.SCOPE_REQUEST)//Para casa REQUISIÇÃO do navegador, ele fará uma sessão diferente.
+@Scope(value=WebApplicationContext.SCOPE_REQUEST)
 public class CarrinhoComprasController {
 	
-	@Autowired //Pedimos para o Spring Injetar para nós
+	@Autowired
 	private ProdutoDAO produtoDAO;
 	
 	@Autowired
@@ -27,23 +27,22 @@ public class CarrinhoComprasController {
 	
 	@RequestMapping("/add")
 	public ModelAndView add(Integer produtoId, TipoPreco tipoPreco) {
-		ModelAndView mv = new ModelAndView("redirect:/carrinho");//Para tela de produtos
+		ModelAndView mv = new ModelAndView("redirect:/carrinho");
 		CarrinhoItem carrinhoItem = criaItem(produtoId, tipoPreco);
 		
 		carrinhoCompras.add(carrinhoItem);
 		return mv;
 	}
 	
-	//Quando ele acessar URL padrão '/carrinho' e for do tipo GET, ele entra nesse método
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView itens() {
 		return new ModelAndView("/carrinho/itens");
 	}
 	
-	//Private, só a classe acessa ou herança
+	
 	private CarrinhoItem criaItem(Integer produtoId, TipoPreco tipoPreco) {
-		Produto produto = produtoDAO.find(produtoId);//recupero o Produto
-		CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipoPreco);//Crio um novo carrinho
+		Produto produto = produtoDAO.find(produtoId);
+		CarrinhoItem carrinhoItem = new CarrinhoItem(produto, tipoPreco);
 		return carrinhoItem;
 	}
 	
@@ -52,6 +51,5 @@ public class CarrinhoComprasController {
 		carrinhoCompras.remover(produtoId, tipoPreco);
 		return new ModelAndView("redirect:/carrinho");
 	}
-	
 	
 }

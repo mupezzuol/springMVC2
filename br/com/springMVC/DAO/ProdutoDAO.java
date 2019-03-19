@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.springMVC.model.Produto;
 
 @Repository
-@Transactional //Irá cuidar da transação do Spring
+@Transactional
 public class ProdutoDAO {
 	
 	@PersistenceContext
@@ -25,7 +25,6 @@ public class ProdutoDAO {
 		return manager.createQuery("select p from Produto p", Produto.class).getResultList();
 	}
 	
-	//Uma busca mais avançada com 'join fetch' pois queremos trazer os PREÇOS para usar no FOREACH
 	public Produto find(int id) {
 		return manager.createQuery("select distinct(p) from Produto p "
 				+ "join fetch p.precos precos "
@@ -33,17 +32,5 @@ public class ProdutoDAO {
 				.setParameter("id", id)
 				.getSingleResult();
 	}
-
-	
-	
-	/*
-	 * 
-	 * Precisamos criar o EntityManagerFactory (Criado pela fábrica).. Ou nós criamos ou falamos para o Spring gerenciar isso para
-	 * nós.. Configuramos ela através da classe JPAConfiguration
-	 * 
-	 * 
-	 * 
-	 * Component = Repository.. Porém Repository HERDA e Component, ou seja, é mais especifica etc..
-	*/
 	
 }

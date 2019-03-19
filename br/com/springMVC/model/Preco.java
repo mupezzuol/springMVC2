@@ -6,7 +6,7 @@ import javax.persistence.Embeddable;
 
 import com.springMVC.model.enums.TipoPreco;
 
-@Embeddable //Indica que isso fará parte do nosso PRODUTO
+@Embeddable
 public class Preco {
 	
 	private BigDecimal valor;

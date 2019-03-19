@@ -15,16 +15,13 @@ public class FileSaver {
 	@Autowired
 	private HttpServletRequest request;
 
-	//Recebo o endereço do arquivo + o arquivo que veio do formulário
-	//Monto o endereço 'path' com o endereço REAL + o endereço base criado do projeto + nome do arquivo
 	public String write(String baseFolder, MultipartFile file) {
 		try {
-			String realPath = request.getServletContext().getRealPath("/" + baseFolder);//Pego endereço completo
-			String path = realPath + "/" + file.getOriginalFilename();//Monto endereço completo + nome do arquivo
-			file.transferTo(new File(path));//Envio o ARQUIVO para o endereço completo
+			String realPath = request.getServletContext().getRealPath("/" + baseFolder);
+			String path = realPath + "/" + file.getOriginalFilename();
+			file.transferTo(new File(path));
 			
-			//Retorno nome comprimido, somente do endereço + arquivo para salvar no banco
-			return baseFolder + "/" + file.getOriginalFilename();//arquivos-sumario/ARQUIVO.jpg
+			return baseFolder + "/" + file.getOriginalFilename();
 		} catch (IllegalStateException | IOException e) {
 			throw new RuntimeException(e);
 		}

@@ -14,16 +14,11 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 		return null;
 	}
 	
-	//Método que procura a classe de configuração dos Controllers do Spring
-	//Nesse caso retornamos a classe onde constam essas configurações
-	//Colocamos classes de configurações da JPA também
 	@Override
 	protected Class<?>[] getServletConfigClasses() {
 		return new Class[] {AppWebConfiguration.class, JPAConfiguration.class};
 	}
 	
-	//Método de configuração do mapeando que eu quero que o Spring gerencie
-	//Nesse caso ele vai gerianciar o que tiver '/' em diante, ou seja TUDO.
 	@Override
 	protected String[] getServletMappings() {
 		return new String[] {"/"};
@@ -36,8 +31,6 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
         return new Filter[] {encodingFilter};
     }
     
-    //Config de concatenação do endereço do arquivo, se precisa de '/' entre outros, nesse caso aspas vazia quer dizer
-    // que queremos que o arquivo fique do jeito que ele vem por padrão...
     @Override
     protected void customizeRegistration(Dynamic registration) {
         registration.setMultipartConfig(new MultipartConfigElement(""));

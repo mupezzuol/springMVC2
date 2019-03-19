@@ -23,42 +23,35 @@ import com.springMVC.model.enums.TipoPreco;
 import com.springMVC.validation.ProdutoValidation;
 
 @Controller
-@RequestMapping("/produtos") //Endereço DEFAULT antes de todos abaixo
+@RequestMapping("/produtos") 
 public class ProdutoController  {
 	
 	@Autowired
-	private ProdutoDAO produtoDAO; //Injeção do DAO.. Faz o NEW....
+	private ProdutoDAO produtoDAO;
 	
 	@Autowired
-    private FileSaver fileSaver; //Classe para gravar caminho do arquivo
+    private FileSaver fileSaver;
 	
-	//Na inicialização do Binder, vamos adc um validador dele, que vá até a classe X que implemeta o Validator
 	@InitBinder
 	public void initBinder(WebDataBinder binder){
 	    binder.addValidators(new ProdutoValidation());
 	}
 	
-	//Os parametros recebido pelo metodo precisa ser o mesmo nome dos inputs do formulado da propriedade 'name'
-	//Esse processo se chama BINDING (funciona com parametro normal e até mesmo um objeto)
-	//@Valid mostra que ele estará de acordo para validação
-	//result é após validação ele recolhe o resultado do Bind do @Valid...
 	@RequestMapping(value="/gravar", method=RequestMethod.POST)
 	public ModelAndView gravar(MultipartFile sumario, @Valid Produto produto, BindingResult result, RedirectAttributes redirectAttributes) {
 		
-		//Se o result, que recolheu os erros, tiver tido erro, ele retorna para a página de cadastro
 		if(result.hasErrors()){
 	        return homeProduto(produto);
 	    }
 		
-		String path = fileSaver.write("arquivos-sumario", sumario);//Salvo o arquivo dentro da pasta criada do projeto. .(webapp)
-	    produto.setSumarioPath(path);//Seto o endereço String 'path' para salvar no banco o endereço
+		String path = fileSaver.write("arquivos-sumario", sumario);
+	    produto.setSumarioPath(path);
 		
 		produtoDAO.gravar(produto);
-		redirectAttributes.addFlashAttribute("sucesso","Produto cadastrado com sucesso!");//Redireciona o atributo para a próxima requisicao, mantendo ele no outro método, sem perde-lo
-		return new ModelAndView("redirect:/produtos");//Chamo direto outro método dentro da Controller com o REDIRECT, para não causar o "BUG do F5"
+		redirectAttributes.addFlashAttribute("sucesso","Produto cadastrado com sucesso!");
+		return new ModelAndView("redirect:/produtos");
 	}
 	
-	//Não coloquei o endereço pois é o endereço HOME 'produtos'
 	@RequestMapping(method=RequestMethod.GET)
 	public ModelAndView listar() {
 		List<Produto> produtos = produtoDAO.listar();
@@ -67,26 +60,19 @@ public class ProdutoController  {
 		return mv;
 	}
 	
-	
 	@RequestMapping(value="/CadProdutos", method=RequestMethod.GET)
 	public ModelAndView homeProduto(Produto produto) {
-		ModelAndView mv = new ModelAndView("produto/cadastroProduto");//Do MODEL para a VIEW
+		ModelAndView mv = new ModelAndView("produto/cadastroProduto");
 		mv.addObject("tipos", TipoPreco.values());
 		return mv;
 	}
 	
-	@RequestMapping("/detalhe/{id}")//Passo o ID com uma URL Amigavel
+	@RequestMapping("/detalhe/{id}")
 	public ModelAndView detalhe(@PathVariable("id") Integer id){
 		ModelAndView mv = new ModelAndView("/produto/detalhe");
 	    Produto produto = produtoDAO.find(id);
 	    mv.addObject("produto", produto);
 	    return mv;
 	}
-	
-	
-	
-	
-	
-	
 
 }

@@ -27,7 +27,7 @@ public class Produto {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataLancamento;
 	
-	@ElementCollection //indica que este atributo é uma coleção de elementos:
+	@ElementCollection
 	private List<Preco> precos;
 	
 	private String sumarioPath;
@@ -38,14 +38,10 @@ public class Produto {
 				+ ", precos=" + precos + "]";
 	}
 	
-	//Usando Lampda para retornar o PREÇO de acordo com o tipo do item.
 	public BigDecimal precoPara(TipoPreco tipoPreco) {
 		return precos.stream().filter(preco -> preco.getTipo().equals(tipoPreco))
-				.findFirst().get().getValor(); //Pega o primeiro retorno como verdade e retorna como inteiro...
+				.findFirst().get().getValor();
 	}
-	
-
-	//Getter's and Setter's
 	
 	public int getId() {
 		return id;
@@ -103,8 +99,6 @@ public class Produto {
 		this.sumarioPath = sumarioPath;
 	}
 	
-	
-	//Usamos a diferença somente através do seu ID
 	@Override
 	public int hashCode() {
 		final int prime = 31;

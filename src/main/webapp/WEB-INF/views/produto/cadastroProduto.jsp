@@ -58,18 +58,3 @@
 	
 </body>
 </html>
-
-<!-- 
-EXPLICANDO O FOREACH:
-- O varStatus é uma forma de fazer que seja gerado um valor diferente a cada vez que é lançado um item da lista.. Ou seja é um INDEX
-- O Spring faz o BINDING do meu Objeto, portanto na minha classe produto eu tenho a herança abaixo:
-	.Listas de PRECOS
-	.PRECO
-		> Valor
-		> TipoPreco
-			> EBOOK, IMPRESSO, COMBO;
-- Para o Spring fazer o BINDING o 'NAME' do input deve ser igual ao da classe, por esse motivo é usado o array, onde eu seto os valores
-de todos os TIPOS que estão na lista.
-- Após selecionar os precos ele seta cada valor em seu respectivo INDEX de acordo com o 'varStatus' utilizado para setar corretamente 
-no array e o BINDING funcionar sem problemas.
- -->
