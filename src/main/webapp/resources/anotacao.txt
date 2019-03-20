@@ -1,0 +1,11 @@
+@Cacheable(value="produtosHome") -> Anoto qual método será feito o CACHE do conteúdo da página
+
+
+@CacheEvict(value="produtosHome",allEntries=true) -> Eu consigo fazer com que qnd ele executar o método abaixo, ele
+deleta o cache mensionado 'produtosHome' e atualiza novamente nossa lista, para que o Cache fique atualizado, smp q tiver cadastros
+novos ele vai ser atualizado o cache
+
+allEntries -> Limpa todas as entradas
+
+
+
