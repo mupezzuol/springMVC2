@@ -7,5 +7,16 @@ novos ele vai ser atualizado o cache
 
 allEntries -> Limpa todas as entradas
 
-
 ConcurrentMapCacheManager(); -> NUNCA usar, somente para testes... Usar sempre GuavaCacheManager, algo mais customizado..
+
+
+
+
+
+
+@ResponseBody -> A respostas que o Spring vai dar é oq está dentro do CORPO, ou seja o PRODUTO.. Ele irá retornar um Json se tu colocar
+as dependecia do jackson etc...
+
+
+
+
