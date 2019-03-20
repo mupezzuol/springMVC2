@@ -1,9 +1,11 @@
 package com.springMVC.conf;
 
+import java.util.concurrent.TimeUnit;
+
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.annotation.EnableCaching;
-import org.springframework.cache.concurrent.ConcurrentMapCache;
 import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.cache.guava.GuavaCacheManager;
 import org.springframework.context.MessageSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import com.google.common.cache.CacheBuilder;
 import com.springMVC.DAO.ProdutoDAO;
 import com.springMVC.controller.HomeController;
 import com.springMVC.infra.FileSaver;
@@ -73,9 +76,15 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		return new RestTemplate();
 	}
 	
-	@Bean //Spring injeta o método pra gnt
+	@Bean //Spring injeta o método pra gnt.. Guava (cache da google)
 	public CacheManager cacheManager() {
-		return new ConcurrentMapCacheManager();//Usa MAP, e pega o nome do Cache atribuidos nos métodos
+		CacheBuilder<Object, Object> builder = CacheBuilder.newBuilder()
+				.maximumSize(100) //Até 100 elementos
+				.expireAfterAccess(5, TimeUnit.MINUTES);//Expira em 5 minutos.
+		GuavaCacheManager manager = new GuavaCacheManager();//Quem está cuidando do cahce agora é o GUAVA não o Spring
+		manager.setCacheBuilder(builder);//Mando para meu cache essas configs
+		
+		return manager;
 	}
 
 }

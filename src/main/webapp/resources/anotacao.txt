@@ -8,4 +8,4 @@ novos ele vai ser atualizado o cache
 allEntries -> Limpa todas as entradas
 
 
-
+ConcurrentMapCacheManager(); -> NUNCA usar, somente para testes... Usar sempre GuavaCacheManager, algo mais customizado..
