@@ -39,7 +39,7 @@ import com.springMVC.model.CarrinhoCompras;
 @EnableCaching
 public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 	
-	@Override
+	@Override //Deixa o tomcat se virar para pegar os arquivos dentro da aplicação
 	public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
 	    configurer.enable();
 	}
@@ -92,8 +92,6 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		return manager;
 	}
 	
-	
-	
 	//Método que gerenciamos/negociamos qual será o retorno da view, JSON, HTML etc...
 	@Bean
 	public ViewResolver contentNegotiationViewResolver(ContentNegotiationManager manager){
@@ -109,9 +107,6 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		
 		return resolver;
 	}
-	
-	
-	
 	
 
 }

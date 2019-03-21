@@ -7,7 +7,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Produtos</title>
-<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<c:url value="/resources/css" var="cssPath" /> <!-- Resolve o problema do Link relativo -->
+<link rel="stylesheet" href="${cssPath}/bootstrap.min.css">
+<link rel="stylesheet" href="${cssPath}/bootstrap-theme.min.css">
 </head>
 <body>
 	<h1>Cadastro de Produtos</h1>
