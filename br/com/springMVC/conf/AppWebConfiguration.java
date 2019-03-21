@@ -1,5 +1,7 @@
 package com.springMVC.conf;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import org.springframework.cache.CacheManager;
@@ -14,12 +16,15 @@ import org.springframework.format.datetime.DateFormatter;
 import org.springframework.format.datetime.DateFormatterRegistrar;
 import org.springframework.format.support.DefaultFormattingConversionService;
 import org.springframework.format.support.FormattingConversionService;
+import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 import com.google.common.cache.CacheBuilder;
@@ -86,5 +91,27 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		
 		return manager;
 	}
+	
+	
+	
+	//Método que gerenciamos/negociamos qual será o retorno da view, JSON, HTML etc...
+	@Bean
+	public ViewResolver contentNegotiationViewResolver(ContentNegotiationManager manager){
+		List<ViewResolver> viewResolvers = new ArrayList<>();
+	    viewResolvers.add(internalResourceViewResolver());//Resolver que nós já temos como padrão
+	    viewResolvers.add(new JsonViewResolver());//Resolver para JSON que criamos
+		
+		
+		//Configurar negociação que ele pode fazer
+		ContentNegotiatingViewResolver resolver = new ContentNegotiatingViewResolver();
+		resolver.setViewResolvers(viewResolvers);
+		resolver.setContentNegotiationManager(manager);//Esse cara vai decidir qual View será retornado, ele negocia.
+		
+		return resolver;
+	}
+	
+	
+	
+	
 
 }

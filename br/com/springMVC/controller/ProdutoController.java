@@ -78,10 +78,5 @@ public class ProdutoController  {
 	    return mv;
 	}
 	
-	@RequestMapping("/{id}")
-	@ResponseBody //A respostas que o Spring vai dar é oq está dentro do CORPO, ou seja o PRODUTO
-	public Produto detalheJson(@PathVariable("id") Integer id){
-	    return produtoDAO.find(id);
-	}
 
 }
