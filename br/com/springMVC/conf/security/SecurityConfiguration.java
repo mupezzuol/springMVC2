@@ -21,6 +21,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    .antMatchers("/produtos/formProdutos").hasRole("ADMIN")//Somente acessos com perfil de ADMIN acessará essa URL
 	    .antMatchers(HttpMethod.POST, "/produtos").hasRole("ADMIN")//Método via POST e GET só acesso para usuários com perfil ADMIN
 	    .antMatchers(HttpMethod.GET, "/produtos").hasRole("ADMIN")
+	    .antMatchers(HttpMethod.GET, "/produtos/").hasRole("ADMIN")
 	    .antMatchers("/produtos/**").permitAll()//Após bloquear alguns URL, todas as outras serão permitidas acesso
 	    .antMatchers("/").permitAll()//Home da aplicação será permitida
 	    .anyRequest().authenticated()//Qualquer requisição DEVERÁ ser autenticada
