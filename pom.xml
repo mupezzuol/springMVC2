@@ -136,6 +136,29 @@
 		    <version>4.1.0.RELEASE</version>
 		</dependency>
 		
+		
+		<!-- Dependencias Spring Security -->
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-config</artifactId>
+		    <version>5.1.4.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-taglibs</artifactId>
+		    <version>5.1.4.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-web</artifactId>
+		    <version>5.1.4.RELEASE</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.springframework.security</groupId>
+		    <artifactId>spring-security-core</artifactId>
+		    <version>5.1.4.RELEASE</version>
+		</dependency>
+		
 	</dependencies>
 
 	<properties>

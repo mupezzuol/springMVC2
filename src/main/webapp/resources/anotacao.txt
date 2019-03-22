@@ -1,5 +1,5 @@
+###### CACHE
 @Cacheable(value="produtosHome") -> Anoto qual método será feito o CACHE do conteúdo da página
-
 
 @CacheEvict(value="produtosHome",allEntries=true) -> Eu consigo fazer com que qnd ele executar o método abaixo, ele
 deleta o cache mensionado 'produtosHome' e atualiza novamente nossa lista, para que o Cache fique atualizado, smp q tiver cadastros
@@ -8,14 +8,49 @@ novos ele vai ser atualizado o cache
 allEntries -> Limpa todas as entradas
 
 ConcurrentMapCacheManager(); -> NUNCA usar, somente para testes... Usar sempre GuavaCacheManager, algo mais customizado..
+####################################################################################
 
 
 
 
 
-
+###### REST
 @ResponseBody -> A respostas que o Spring vai dar é oq está dentro do CORPO, ou seja o PRODUTO.. Ele irá retornar um Json se tu colocar
 as dependecia do jackson etc...
+#################################################################################### 
+
+
+
+
+
+###### SPRING SECURITY
+
+1. Temos criar uma classe 'SecurityConfiguration' que será habilitada para o spring encontrar qual classe será configurado o
+security da aplicação.
+
+Exemplo:
+
+@EnableWebMvcSecurity
+public class SecurityConfiguration extends WebSecurityConfigurerAdapter{}
+
+
+2. Terá que acrescentar a classe de configuração na classe de ServletSpringMVC no método getRootConfigClasses para
+assim que a aplicação subir o spring security subir primeiro e encontrar a classe de configuração criada.
+
+
+3. Criar uma classe de filter, 'SpringSecurityFilterConfiguration' herdando uma outra classe onde temos o INICIALIZADOR do
+security, um filtro padrão que será configurado posteriormente como quiser.
+
+
+Exemplo:
+
+public class SpringSecurityFilterConfiguration extends AbstractSecurityWebApplicationInitializer{}
+
+
+
+
+####################################################################################
+
 
 
 
