@@ -37,7 +37,6 @@
 						<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Carrinho (${carrinhoCompras.quantidade })</a></li>
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
-						<li><a href='<c:url value="/produtos"/>'>Produtos</a></li>
 					</ul>
 				</nav>
 			</div>
@@ -47,7 +46,6 @@
 	<nav class="categories-nav">
 		<ul class="container">
 			<li class="category"><a href='<c:url value="/"/>'>Home</a></li>
-			<li><a href='<c:url value="produtos/CadProdutos"/>'>Cadastre novos Produtos</a></li>
 			<li class="category"><a href="/collections/livros-de-agile"> Agile </a></li>
 			<li class="category"><a href="/collections/livros-de-front-end"> Front End </a></li>
 			<li class="category"><a href="/collections/livros-de-games"> Games </a></li>
