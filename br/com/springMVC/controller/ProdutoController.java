@@ -46,7 +46,7 @@ public class ProdutoController  {
 		return mv;
 	}
 	
-	@RequestMapping(value="/CadProdutos", method=RequestMethod.GET)
+	@RequestMapping(value="/formProdutos", method=RequestMethod.GET)
 	public ModelAndView formProduto(Produto produto) {
 		ModelAndView mv = new ModelAndView("produto/cadastroProduto");
 		mv.addObject("tipos", TipoPreco.values());

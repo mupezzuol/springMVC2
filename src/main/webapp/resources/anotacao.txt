@@ -26,12 +26,14 @@ as dependecia do jackson etc...
 ###### SPRING SECURITY
 
 1. Temos criar uma classe 'SecurityConfiguration' que será habilitada para o spring encontrar qual classe será configurado o
-security da aplicação.
+security da aplicação. Ela é uma classe de configuração do security. (não esquecer de declarar ela no servlet configuration)
 
 Exemplo:
 
 @EnableWebMvcSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter{}
+
+WebSecurityConfigurerAdapter -> já vem pronta, já vai configurar tudo que o security precisa, o @ só habilita o spring security
 
 
 2. Terá que acrescentar a classe de configuração na classe de ServletSpringMVC no método getRootConfigClasses para
@@ -40,18 +42,31 @@ assim que a aplicação subir o spring security subir primeiro e encontrar a cla
 
 3. Criar uma classe de filter, 'SpringSecurityFilterConfiguration' herdando uma outra classe onde temos o INICIALIZADOR do
 security, um filtro padrão que será configurado posteriormente como quiser.
-
+-  ELE JÁ IRÁ INICIALIZAR NOSSOS FILTROS AUTOMATICAMENTE
 
 Exemplo:
 
 public class SpringSecurityFilterConfiguration extends AbstractSecurityWebApplicationInitializer{}
 
 
-
+Observação: Só com essas configs iniciais o security já estará funcionando, nenhuma URL da aplicação será acessada sem autorização.
+Porém tudo é configurado com o tempo.
 
 ####################################################################################
 
 
 
+
+
+###### SPRING SECURITY - MÉTODOS E CONFIGURAÇÕES
+
+
+configure -> Nele configuramos URL para ter acesso negado, autorizado etc.. A ordem faz a diferença, então você primeiro
+nega os acessos, dps colocar as URL que liberam os acessos.
+
+
+
+
+####################################################################################
 
 
