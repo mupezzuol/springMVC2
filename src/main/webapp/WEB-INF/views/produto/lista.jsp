@@ -25,7 +25,7 @@
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 		      <li class="nav-item">
-		        <a class="nav-link" href="${s:mvcUrl('PC#listar').build()}">Lista de Produtos</a>
+ 		        <a class="nav-link" href="${s:mvcUrl('PC#listar').build()}">Lista de Produtos</a>
 		      </li>
 		      <li class="nav-item">
 		        <a class="nav-link" href="${s:mvcUrl('PC#formProduto').build()}">Cadastro de Produtos</a>
