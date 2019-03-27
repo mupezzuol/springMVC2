@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -17,7 +19,9 @@ public class Usuario implements UserDetails{//Precisa implementar UserDetails pa
 
 	private static final long serialVersionUID = 1L;
 	
-    @Id
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	private int id;
+	
     private String email;
     
     private String nome;
@@ -30,7 +34,6 @@ public class Usuario implements UserDetails{//Precisa implementar UserDetails pa
     //LAZY -> É o default, usando ele será retornado NULO os dados do banco,
     @OneToMany(fetch=FetchType.EAGER)
     private List<Role> roles = new ArrayList<Role>();
-    
     
     
 	//Métodos sobrescrito da INTERFACE
@@ -72,6 +75,14 @@ public class Usuario implements UserDetails{//Precisa implementar UserDetails pa
 	
 	
     //Getter's and Setter's
+	public int getId() {
+		return id;
+	}
+	
+	public void setId(int id) {
+		this.id = id;
+	}
+	
 	public String getEmail() {
 		return email;
 	}

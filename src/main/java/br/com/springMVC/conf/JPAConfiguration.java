@@ -39,7 +39,6 @@ public class JPAConfiguration {
         factoryBean.setJpaProperties(props);
 
         factoryBean.setPackagesToScan(new String[]{"br.com.springMVC.model", "br.com.springMVC.model.enums", "br.com.springMVC.model.auth"});
-        
         return factoryBean;
     }
 	
