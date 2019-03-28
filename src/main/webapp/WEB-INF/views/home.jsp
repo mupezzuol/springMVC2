@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
 <!DOCTYPE html>
 <html>
@@ -34,9 +35,25 @@
 			<div id="header-content">
 				<nav id="main-nav">
 					<ul class="clearfix">
+					
+					
+					<!-- tag do spring security, se ele tiver autenticado, ou seja logado, irá aparecer normalmente, caso contrario não-->
+					<security:authorize access="isAuthenticated()">
 						<li><a href="${s:mvcUrl('PC#listar').build()}" rel="nofollow">Lista de Produtos</a></li>
 						<li><a href="${s:mvcUrl('PC#formProduto').build()}" rel="nofollow">Cadastro de Produtos</a></li>
+					</security:authorize>
+					
+					<!-- Altorizando somente usuários com permissao de administrador-->
+					<security:authorize access="hasRole('ROLE_ADMIN')">
 						<li><a href="${s:mvcUrl('CCC#itens').build() }" rel="nofollow">Carrinho (${carrinhoCompras.quantidade})</a></li>
+					</security:authorize>
+					
+					<!-- INICIO REALIZANDO TESTE-->
+					<security:authorize access="hasRole('ROLE_AUX')">
+						<li><a href="#" rel="nofollow">Teste User Aux</a></li>
+					</security:authorize>
+					<!-- FIM REALIZANDO TESTE-->
+					
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
 					</ul>

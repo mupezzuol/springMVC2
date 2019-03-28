@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,6 +32,14 @@
 		        <a class="nav-link" href="${s:mvcUrl('PC#formProduto').build()}">Cadastro de Produtos</a>
 		      </li>
 		    </ul>
+		    
+		    <!-- Mostrando usuário logado.. 'principal' é default, usuário principal logado, o que está agora logado-->
+		    <ul class="nav navbar-nav navbar-right">
+			  <li class="nav-item">
+			  	<a href="#">Usuário: <security:authentication property="principal.username"/>
+			  </li>
+			</ul>
+			
 		  </div>
 		</nav>
 		<!-- FIM NAV BAR-->
@@ -55,7 +64,9 @@
 			</c:forEach>
 		</table>
 		<!-- FIM TABLE -->
-	</div>
-	
+		
+		<!-- Mostrando usuário logado de uma segunda forma, com variavel-->
+		<security:authentication property="principal" var="usuario"/> Usuário: ${usuario.username }
+			 
 </body>
 </html>
