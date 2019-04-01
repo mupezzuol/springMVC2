@@ -7,6 +7,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.annotation.web.servlet.configuration.EnableWebMvcSecurity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import br.com.springMVC.DAO.auth.UsuarioDAO;
 
@@ -23,7 +24,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 	    http.authorizeRequests()
-	    .antMatchers("/resources/**").permitAll()//Todos terão acesso
+	    .antMatchers("/resources/**").permitAll()//Todos terão acesso, para que nos request não ocorram esse de direcionar pasa CSS etc..
 	    .antMatchers("/carrinho/**").permitAll()
 	    .antMatchers("/pagamento/**").permitAll()
 	    .antMatchers("/produtos/formProdutos").hasRole("ADMIN")//Somente acessos com perfil de ADMIN acessará essa URL
@@ -33,7 +34,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    .antMatchers("/produtos/**").permitAll()//Após bloquear alguns URL, todas as outras serão permitidas acesso
 	    .antMatchers("/").permitAll()//Home da aplicação será permitida
 	    .anyRequest().authenticated()//Qualquer requisição DEVERÁ ser autenticada
-	    .and().formLogin();//Após autenticação vá para tela de LOGIN caso seja recusado o acesso.
+	    .and().formLogin().loginPage("/login").permitAll()//Após autenticação vá para tela de LOGIN via controller(url) caso seja recusado o acesso, página de login personalizada.
+	    .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));//Hablito o logout, atraves da URL '/logout' default no spring security
 	}
 	
 	

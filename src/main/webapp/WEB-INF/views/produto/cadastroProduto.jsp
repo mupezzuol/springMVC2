@@ -28,6 +28,9 @@
 		      <li class="nav-item">
 		        <a class="nav-link" href="${s:mvcUrl('PC#formProduto').build()}">Cadastro de Produtos</a>
 		      </li>
+		      <li class="nav-item">
+		        <a class="nav-link" href="<c:url value="/logout"/>">Sair</a>
+		      </li>
 		    </ul>
 		  </div>
 		</nav>

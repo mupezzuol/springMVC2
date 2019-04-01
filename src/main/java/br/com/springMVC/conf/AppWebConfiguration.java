@@ -32,7 +32,7 @@ import br.com.springMVC.conf.rest.JsonViewResolver;
 @SuppressWarnings("deprecation")
 @EnableWebMvc
 @ComponentScan(basePackages = {"br.com.springMVC.conf", "br.com.springMVC.conf.rest", "br.com.springMVC.conf.security",
-	    "br.com.springMVC.controller", "br.com.springMVC.DAO", "br.com.springMVC.DAO.auth", "br.com.springMVC.infra",
+	    "br.com.springMVC.controller", "br.com.springMVC.controller.auth", "br.com.springMVC.DAO", "br.com.springMVC.DAO.auth", "br.com.springMVC.infra",
 	    "br.com.springMVC.model", "br.com.springMVC.model.auth", "br.com.springMVC.model.enums", "br.com.springMVC.validation"})
 @EnableCaching
 public class AppWebConfiguration extends WebMvcConfigurerAdapter{

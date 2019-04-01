@@ -56,6 +56,7 @@
 					
 						<li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
 						<li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
+						<li><a class="nav-link" href="<c:url value="/logout"/>">Sair</a></li>
 					</ul>
 				</nav>
 			</div>
