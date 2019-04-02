@@ -9,6 +9,8 @@
 <%@ attribute name="bodyClass" required="false" %>
 <%@ attribute name="atributoTeste" required="false" %>
 
+<!-- Fragmento, colocar códigos q não precisam ter em todas as páginas -->
+<%@ attribute name="extraScripts" fragment="true" %>
 
 <!DOCTYPE html>
 <html>
@@ -40,7 +42,13 @@
 
 <%@ include file="/WEB-INF/tags/templates/cabecalho.jsp" %>
 
-<!-- conteudo da pagina utilizando doBody -->
+<!-- conteudo da pagina utilizando doBody, caso use o Fragment, terá q usar isso nas páginas -->
 <jsp:doBody />
 
 <%@ include file="/WEB-INF/tags/templates/rodape.jsp" %>
+
+<jsp:invoke fragment="extraScripts"></jsp:invoke>
+
+<script>
+	console.log("Script que terá em todas as páginas");
+</script>
