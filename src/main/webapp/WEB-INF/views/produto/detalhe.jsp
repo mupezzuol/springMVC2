@@ -1,11 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <!-- usando a diretiva JSP -->
-<%@ include file="/WEB-INF/views/templates/cabecalho.jsp" %>
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
+<tags:pageTemplate titulo="Detalhe" atributoTeste="Atributo via TAG - Teste página Detalhe">
+<!-- Conteúdo da página -->    
 
 	<article id="livro-css-eficiente">
 		<header id="product-highlight" class="clearfix">
@@ -37,8 +38,8 @@
 				</ul>
 				<button type="submit" class="submit-image icon-basket-alt" title="Compre Agora ${produto.titulo}"></button>
 			
-			<!-- Usando o FORM do Spring, automaticamente ele irÃ¡ adc o Token de validaÃ§Ã£o contra hackers -->
-			<!-- IrÃ¡ colocar um campo hidden para validar isso, para nÃ£o sofrer ataques de tipo CSRF -->
+			<!-- Usando o FORM do Spring, automaticamente ele irá adc o Token de validação contra hackers -->
+			<!-- Irá colocar um campo hidden para validar isso, para não sofrer ataques de tipo CSRF -->
 			</form:form>
 		</section>
 
@@ -46,7 +47,7 @@
 			<section class="summary">
 				<ul>
 					<li>
-						<h3>E muito mais... <a href='/pages/sumario-java8'>veja o sumÃ¡rio</a>.</h3>
+						<h3>E muito mais... <a href='/pages/sumario-java8'>veja o sumário</a>.</h3>
 					</li>
 				</ul>
 			</section>
@@ -54,11 +55,11 @@
 			<section class="data product-detail">
 				<h2 class="section-title">Dados do livro:</h2>
 				<p>
-					NÃºmero de pÃ¡ginas: <span>${produto.paginas}</span>
+					Número de páginas: <span>${produto.paginas}</span>
 				</p>
 				<p></p>
 				<!-- Temos que pegar o .TIME para pegar a hora -->
-				<p>Data de publicaÃ§Ã£o: 
+				<p>Data de publicação: 
 					<fmt:parseDate value="${produto.dataLancamento}" pattern="yyyy-MM-dd" var="parsedDateTime" type="both"/>
 					<fmt:formatDate pattern="dd/MM/yyyy" value="${parsedDateTime}"/>
 				</p>
@@ -69,4 +70,4 @@
 		</div>
 	</article>
 
-<%@ include file="/WEB-INF/views/templates/rodape.jsp" %>
+</tags:pageTemplate>

@@ -3,7 +3,15 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="security" %>
 
-<%@ include file="/WEB-INF/views/templates/cabecalho.jsp" %>
+
+<!-- O atributo tagdir da diretiva taglib serve para indicar que o arquivo de tags a ser encontrado está em um diretório local e não remoto  
+como é feito com o atributo mais comum, o uri. -->
+<%@ taglib tagdir="/WEB-INF/tags" prefix="tags" %>
+
+
+<tags:pageTemplate titulo="Home" atributoTeste="Atributo via TAG - Teste página Home">
+<!-- Conteúdo da página -->    
+
 
 	<section id="index-section" class="container middle">
 		<h1 class="cdc-call">Últimos dias com os preços promocionais. Aproveite!</h1>
@@ -54,4 +62,4 @@
 	</section>
 
 
-<%@ include file="/WEB-INF/views/templates/rodape.jsp" %>	
+</tags:pageTemplate>
