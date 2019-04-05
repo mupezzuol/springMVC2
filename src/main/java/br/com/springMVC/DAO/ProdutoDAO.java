@@ -1,14 +1,17 @@
 package br.com.springMVC.DAO;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.springMVC.model.Produto;
+import br.com.springMVC.model.enums.TipoPreco;
 
 @Repository
 @Transactional
@@ -31,6 +34,14 @@ public class ProdutoDAO {
 				+ "where p.id = :id", Produto.class)
 				.setParameter("id", id)
 				.getSingleResult();
+	}
+	
+	public BigDecimal somaPrecosPorTipo(TipoPreco tipoPreco){
+		TypedQuery<BigDecimal> query = manager.createQuery("select sum(preco.valor) from Produto p "
+	    		+ "join p.precos preco where preco.tipo = :tipoPreco", BigDecimal.class);
+	    query.setParameter("tipoPreco", tipoPreco);
+	    
+	    return query.getSingleResult();
 	}
 	
 }

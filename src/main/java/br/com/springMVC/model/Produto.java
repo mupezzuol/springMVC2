@@ -2,6 +2,7 @@ package br.com.springMVC.model;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -28,7 +29,7 @@ public class Produto {
 	private LocalDate dataLancamento;
 	
 	@ElementCollection
-	private List<Preco> precos;
+	private List<Preco> precos = new ArrayList<>();
 	
 	private String sumarioPath;
 	
