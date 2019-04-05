@@ -19,10 +19,14 @@ import org.springframework.web.accept.ContentNegotiationManager;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+import org.springframework.web.servlet.LocaleResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.DefaultServletHandlerConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.i18n.CookieLocaleResolver;
+import org.springframework.web.servlet.i18n.LocaleChangeInterceptor;
 import org.springframework.web.servlet.view.ContentNegotiatingViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -104,6 +108,22 @@ public class AppWebConfiguration extends WebMvcConfigurerAdapter{
 		resolver.setContentNegotiationManager(manager);//Esse cara vai decidir qual View será retornado, ele negocia.
 		
 		return resolver;
+	}
+	
+	
+	//Criamos um interceptador para que quando for solicitado mudança de LOCALE o Spring estar preparado para isso
+	//Spring ficará espero caso chegue requisição de troca de locale
+	@Override
+	public void addInterceptors(InterceptorRegistry registry) {
+	    registry.addInterceptor(new LocaleChangeInterceptor());
+	}
+	
+	//Locamos o LocaleResolver para q atraves do cookie a pessoa não fique clicando em PT toda hora que entrar em uma página
+	//O spring saberá qual é o locale daquele usuário/sessão
+	//Bean para habilitar para o Spring entender o método
+	@Bean 
+	public LocaleResolver localeResolver(){
+	    return new CookieLocaleResolver();
 	}
 	
 
