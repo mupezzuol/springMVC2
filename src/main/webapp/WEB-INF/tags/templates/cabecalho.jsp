@@ -1,4 +1,5 @@
 <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
 <header id="layout-header">
     <div class="clearfix container">
@@ -10,10 +11,23 @@
                 <ul class="clearfix">
                     <li>
                         <a href="${s:mvcUrl('CCC#itens').build()}" rel="nofollow"> 
-                            Carrinho ( ${carrinhoCompras.quantidade} )
+
+                            <!-- Forma curta de pegar argumento no messages.. Forma por Spring -->
+                            <s:message code="menu.carrinho" arguments="${carrinhoCompras.quantidade}" />
+                            
+                            
+                            <!-- Forma Longa -->
+<%--                             <fmt:message key="menu.carrinho"> --%>
+<%--                             	<fmt:param value="${carrinhoCompras.quantidade}" /> --%>
+<%--                             </fmt:message> --%>
+                            
                         </a>
                     </li>	
-                    <li><a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">Sobre Nós</a></li>
+                    <li>
+                    	<a href="/pages/sobre-a-casa-do-codigo" rel="nofollow">
+                    		<fmt:message key="menu.sobre"/>
+                    	</a>
+                    </li>
                     <li><a href="/pages/perguntas-frequentes" rel="nofollow">Perguntas Frequentes</a></li>
                 </ul>
             </nav>
@@ -22,19 +36,45 @@
 </header>
 <nav class="categories-nav">
     <ul class="container">
-        <li class="category"><a href="http://www.casadocodigo.com.br">Home</a></li>
-        <li class="category"><a href="/collections/livros-de-agile">
-                Agile </a></li>
-        <li class="category"><a href="/collections/livros-de-front-end">
-                Front End </a></li>
-        <li class="category"><a href="/collections/livros-de-games">
-                Games </a></li>
-        <li class="category"><a href="/collections/livros-de-java">
-                Java </a></li>
-        <li class="category"><a href="/collections/livros-de-mobile">
-                Mobile </a></li>
-        <li class="category"><a
-            href="/collections/livros-desenvolvimento-web"> Web </a></li>
-        <li class="category"><a href="/collections/outros"> Outros </a></li>
+        <li class="category">
+            <a href="http://www.casadocodigo.com.br">
+                <fmt:message key="navegacao.categoria.home"/>
+            </a>
+        </li>
+        <li class="category">
+            <a href="/collections/livros-de-agile">
+                <fmt:message key="navegacao.categoria.agile"/>
+            </a>
+        </li>
+        <li class="category">
+            <a href="/collections/livros-de-front-end">
+                <fmt:message key="navegacao.categoria.front_end"/>
+            </a>
+        </li>
+        <li class="category">
+            <a href="/collections/livros-de-games">
+                <fmt:message key="navegacao.categoria.games"/>
+            </a>
+        </li>
+        <li class="category">
+            <a href="/collections/livros-de-java">
+                <fmt:message key="navegacao.categoria.java"/>
+            </a>
+        </li>
+        <li class="category">
+            <a href="/collections/livros-de-mobile">
+                <fmt:message key="navegacao.categoria.mobile"/>
+            </a>
+        </li>
+        <li class="category">
+            <a    href="/collections/livros-desenvolvimento-web">
+                <fmt:message key="navegacao.categoria.web"/>
+            </a>
+        </li>
+        <li class="category">
+            <a href="/collections/outros">
+                <fmt:message key="navegacao.categoria.outros"/>
+            </a>
+        </li>
     </ul>
 </nav>
