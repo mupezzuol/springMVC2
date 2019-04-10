@@ -7,18 +7,21 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.springMVC.builders.ProdutoBuilder;
+import br.com.springMVC.conf.DataSourceConfigurationTest;
 import br.com.springMVC.conf.JPAConfiguration;
 import br.com.springMVC.model.Produto;
 import br.com.springMVC.model.enums.TipoPreco;
 
 //Classe do JUnit que habilita q o JUnit do Spring fará o controle dos testes
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(classes = {JPAConfiguration.class,ProdutoDAO.class})//Classes para funcionar as funções que usamos na classe.. DAO, JPA etc...
+@ContextConfiguration(classes = {JPAConfiguration.class,ProdutoDAO.class, DataSourceConfigurationTest.class})//Classes para funcionar as funções que usamos na classe.. DAO, JPA etc...
+@ActiveProfiles("test") //Profile ATIVO de test, onde será diferenciado na hora de injeção, para qual banco irá ser efetuado o test
 public class ProdutoDAOTest {
 	
 	//JUnit com Spring faz a injeção de dependencia
