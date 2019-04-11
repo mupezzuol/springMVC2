@@ -36,6 +36,12 @@
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
+            <groupId>javax.servlet.jsp</groupId>
+            <artifactId>jsp-api</artifactId>
+            <version>2.2</version>
+            <scope>provided</scope>
+        </dependency>
+		<dependency>
 			<groupId>javax.servlet.jsp.jstl</groupId>
 			<artifactId>jstl-api</artifactId>
 			<version>1.2</version>
@@ -110,8 +116,9 @@
     		<version>6.0.0.Final</version>
 		</dependency>
 		
+		
+		
 		<!-- Dependencias Jackson -->
-
 		<dependency>
 		    <groupId>com.fasterxml.jackson.core</groupId>
 		    <artifactId>jackson-core</artifactId>
