@@ -9,6 +9,7 @@ import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -76,6 +77,17 @@ public class ProdutoController  {
 	    mv.addObject("produto", produto);
 	    return mv;
 	}
+	
+	
+	//@ExceptionHandler -> Trata Exception, nesse caso todos dessa classe
+	//Caso de ruim nessa controller, ele trata dessa forma
+//	@ExceptionHandler(Exception.class)
+//	public String trataDetalheNaoEcontrado(){
+//	    return "exception/error";
+//	}
+//	
+	
+	
 	
 
 }
