@@ -25,4 +25,9 @@ public class Preco {
 	public void setTipo(TipoPreco tipo) {
 		this.tipo = tipo;
 	}
+	
+	//Sobrescrevemos para exibir de uma forma mais agradavel na tela
+	public String toString() {
+	    return this.tipo.name() + " - " + this.valor;
+	}
 }

@@ -23,9 +23,13 @@ public class ProdutoDAO {
 	public void gravar(Produto produto) {
 		manager.persist(produto);
 	}
-
+	
+	
+	//Usamos FETCH para que traga a coleção de preços, pois por default o hibernate trata coleções como LAZY
+	//ou seja, só vai até o banco quando for utilizada...
+	//Podemos usar o OpenEntityManagerInViewFilter, porém ele faz muito mais query no banco, isso pode ser ruim dependendo da performace
 	public List<Produto> listar() {
-		return manager.createQuery("select p from Produto p", Produto.class).getResultList();
+		return manager.createQuery("select distinct(p) from Produto p join fetch p.precos", Produto.class).getResultList();
 	}
 	
 	public Produto find(int id) {

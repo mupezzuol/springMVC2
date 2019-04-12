@@ -28,6 +28,8 @@ public class Produto {
 	@DateTimeFormat(pattern="dd/MM/yyyy")
 	private LocalDate dataLancamento;
 	
+	//Toda coleção no Hibernate ele usa LAZY
+	//Devo usar o FETCH na minha query para trazer esses resultados, caso contrario uso 'OpenEntityManagerInViewFilter' no filtro do Spring
 	@ElementCollection
 	private List<Preco> precos = new ArrayList<>();
 	
