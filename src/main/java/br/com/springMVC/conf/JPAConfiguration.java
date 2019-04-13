@@ -23,14 +23,14 @@ public class JPAConfiguration {
 	//Passamos o dataSource para que o Spring consiga definir qual o Profile que irá injetar no dataSource
 	//Se será profile de dev ou test.. dessa forma ele injeta oq ele receber..
 	@Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource) {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties additionalProperties) {
         LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         factoryBean.setJpaVendorAdapter(vendorAdapter);
         
         factoryBean.setPackagesToScan(new String[]{"br.com.springMVC.model", "br.com.springMVC.model.enums", "br.com.springMVC.model.auth"});
         factoryBean.setDataSource(dataSource);//Recebe via param a injeção de dataSource que vier.. test/dev
-        factoryBean.setJpaProperties(aditionalProperties());//Propriedades adicionais atraves do método q retornar o properties
+        factoryBean.setJpaProperties(additionalProperties);//Propriedades adicionais atraves do método q retornar o properties
 
         return factoryBean;
     }
@@ -48,7 +48,9 @@ public class JPAConfiguration {
 		return dataSource;
 	}
 	
-	private Properties aditionalProperties() {
+	@Bean
+	@Profile("dev")
+	public Properties aditionalProperties() {
 		Properties props = new Properties();
 		
 		if (validateProfileProps.equals("dev")) {
@@ -61,7 +63,6 @@ public class JPAConfiguration {
 			 props.setProperty("hibernate.show_sql", "true");
 			 props.setProperty("hibernate.hbm2ddl.auto", "create-drop");
 		}
-		
 		return props;
 	}
 	

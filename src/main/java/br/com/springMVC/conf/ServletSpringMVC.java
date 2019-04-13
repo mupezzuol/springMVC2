@@ -17,7 +17,7 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {//Assim que o projeto subir, a primeira coisa a fazer é chama o security
-		return new Class[] {SecurityConfiguration.class, AppWebConfiguration.class, JPAConfiguration.class};
+		return new Class[] {SecurityConfiguration.class, AppWebConfiguration.class, JPAConfiguration.class, JPAProductionConfiguration.class};
 	}
 
 	@Override
@@ -47,11 +47,12 @@ public class ServletSpringMVC extends AbstractAnnotationConfigDispatcherServletI
     
     
     //Configuro para subir minha aplicação em contexto de 'dev'
-    @Override
-    public void onStartup(ServletContext servletContext) throws ServletException {
-        super.onStartup(servletContext);
-        servletContext.addListener(new RequestContextListener());//O Spring fica escutando nosso contexto para escutar nosso profile
-        servletContext.setInitParameter("spring.profiles.active", "dev");//Ativamos o profile de 'dev' como default da aplicação
-    }
+    //Comentamos, pois o profile setaremos de 'prod' para subir para o HEROKU
+//    @Override
+//    public void onStartup(ServletContext servletContext) throws ServletException {
+//        super.onStartup(servletContext);
+//        servletContext.addListener(new RequestContextListener());//O Spring fica escutando nosso contexto para escutar nosso profile
+//        servletContext.setInitParameter("spring.profiles.active", "dev");//Ativamos o profile de 'dev' como default da aplicação
+//    }
 
 }
