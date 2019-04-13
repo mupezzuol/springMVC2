@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -32,7 +33,8 @@ public class Usuario implements UserDetails{//Precisa implementar UserDetails pa
     //Fetch -> BUSCA
     //EAGER -> Eager Loading carrega os dados mesmo que você não vá utilizá-los
     //LAZY -> É o default, usando ele será retornado NULO os dados do banco,
-    @OneToMany(fetch=FetchType.EAGER)
+    //cascade -> qnd cadastrar usuário automaticamente ele cadastra a ROLE
+    @OneToMany(fetch=FetchType.EAGER, cascade=CascadeType.PERSIST)
     private List<Role> roles = new ArrayList<Role>();
     
     

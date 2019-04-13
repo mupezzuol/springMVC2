@@ -33,6 +33,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	    .antMatchers(HttpMethod.GET, "/produtos/").hasRole("ADMIN")
 	    .antMatchers("/produtos/**").permitAll()//Após bloquear alguns URL, todas as outras serão permitidas acesso
 	    .antMatchers("/").permitAll()//Home da aplicação será permitida
+	    .antMatchers("/url-magica-maluca-oajksfbvad6584i57j54f9684nvi658efnoewfmnvowefnoeijn").permitAll()//URL para cadastrar usuário no banco
 	    .anyRequest().authenticated()//Qualquer requisição DEVERÁ ser autenticada
 	    .and().formLogin().loginPage("/login").permitAll()//Após autenticação vá para tela de LOGIN via controller(url) caso seja recusado o acesso, página de login personalizada.
 	    .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));//Hablito o logout, atraves da URL '/logout' default no spring security

@@ -32,5 +32,9 @@ public class UsuarioDAO implements UserDetailsService {
 	    return usuarios.get(0);//Pega primeiro valor da lista.
 	}
 
+	public void gravar(Usuario usuario) {
+		manager.persist(usuario);
+	}
+
 	
 }
