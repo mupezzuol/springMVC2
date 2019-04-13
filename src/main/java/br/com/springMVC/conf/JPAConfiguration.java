@@ -23,8 +23,10 @@ public class JPAConfiguration {
 	//Passamos o dataSource para que o Spring consiga definir qual o Profile que irá injetar no dataSource
 	//Se será profile de dev ou test.. dessa forma ele injeta oq ele receber..
 	@Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, Properties additionalProperties) {
-        LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, 
+    		Properties additionalProperties) {
+        
+		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
         JpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
         factoryBean.setJpaVendorAdapter(vendorAdapter);
         

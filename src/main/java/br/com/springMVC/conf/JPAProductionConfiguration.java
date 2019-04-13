@@ -11,8 +11,10 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 //Profile de Produção, para subir para o HEROKU
+@EnableTransactionManagement
 @Profile("prod")
 public class JPAProductionConfiguration {
 	
@@ -40,13 +42,13 @@ public class JPAProductionConfiguration {
 	}
 	 
 	 //Configs para o Heroku
-	  @Bean
-	  private Properties aditionalProperties(){
-	    Properties props = new Properties();
-	    props.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
-	    props.setProperty("hibernate.show_sql", "true");
-	    props.setProperty("hibernate.hbm2ddl.auto", "update");
-	    return props;
-	  }
+	@Bean
+	public Properties additionalProperties() {
+		Properties properties = new Properties();
+		properties.setProperty("hibernate.dialect", "org.hibernate.dialect.PostgreSQLDialect");
+		properties.setProperty("hibernate.show_sql", "true");
+		properties.setProperty("hibernate.hbm2ddl.auto", "update");
+		return properties;
+	}
 
 }
