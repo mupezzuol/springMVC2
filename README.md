@@ -1,18 +1,39 @@
-# springMVC2
-Spring MVC II: Integração, cache, segurança e templates. (Alura)
+# Spring MVC - Spring Framework study project:white_check_mark:
 
-JSP Template; JSTL/EL; Spring MVC;
+Project built with Spring MVC as a way of learning and testing some Spring Framework technologies.
 
-Desempenho com Cache; Serviço Rest; Bootstrap; Spring Security; Views com Template; i18n; Testando a aplicação; Publicando o projeto no Heroku
+## Index :pushpin:
+- [About the project](#about)
+- [License](#license)
 
--> Algumas tarefas
-Cadastro de produtos
-Cadastro de preços do produto
-Listando os produtos
-Redirect com Escopo de Flash
-Validação e conversão de dados
-Enviando arquivos ao servidor
-Expondo atributos no JSP
-Escopo sessão
-Carrinho de compras
-Finalizando o carrinho
+## About the project <a name="about"></a> :link:
+
+Follow the technologies and solutions present in this project below:
+
+- Java 8;
+- Spring Framework 4.3.12.RELEASE;
+- Hibernate + JPA;
+- JSTL/EL;
+- JPS Template + Views with Template + Bootstrap;
+- i18n;
+- slf4j;
+- Spring Security;
+- Cache;
+- .....
+
+#### Some modules and services
+
+- Product registration
+- Product price registration
+- Listing the products
+- Flash Scoped Redirect
+- Data conversion and validation
+- Sending files to the server
+- Exposing attributes in the JSP
+- Session scope
+- Shopping cart
+- Finalizing the cart
+
+## License <a name="license"></a> :clipboard:
+
+Feel free to contribute, we continue with an _`MIT license`_. :heart_eyes:[here](https://github.com/mupezzuol/springMVC2/blob/master/LICENSE)
