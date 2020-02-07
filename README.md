@@ -19,7 +19,11 @@ Follow the technologies and solutions present in this project below:
 - slf4j;
 - Spring Security;
 - Cache;
-- .....
+- Data validation;
+- Working with Dates;
+- Session;
+- Service REST;
+- Test with MockMVC.
 
 #### Some modules and services
 
